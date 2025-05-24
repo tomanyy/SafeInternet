@@ -104,3 +104,4 @@ searchInput.addEventListener("input", handleSearch);
 
 // Init
 populateGames();
+fetchGames();
