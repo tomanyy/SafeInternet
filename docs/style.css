@@ -1,13 +1,15 @@
 :root {
-  --primary-color: #f3f4f6;       
-  --secondary-color: #60a5fa;       
-  --bg-color: #111827;            
-  --card-bg-color: #1f2937;       
-  --text-color: #f9fafb;         
-  --muted-text: #9ca3af;           
-  --lead-text: #d1d5db;            
-  --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  --border-radius: 12px;
+  --primary-color: #f3f4f6;
+  --secondary-color: #60a5fa;
+  --bg-color: #0f172a;
+  --card-bg-color: #1e293b;
+  --text-color: #e2e8f0;
+  --muted-text: #94a3b8;
+  --lead-text: #cbd5e1;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --border-color: #334155;
+  --link-hover: #93c5fd;
+  --border-radius: 10px;
 }
 
 * {
@@ -21,12 +23,40 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
-  padding: 2rem;
 }
 
+/* Navigation Bar */
+nav {
+  background-color: var(--card-bg-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow);
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--link-hover);
+}
+
+/* Header */
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: var(--card-bg-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
 }
 
 h1 {
@@ -40,18 +70,23 @@ p.lead {
   margin-top: 0.5rem;
 }
 
+/* Section (Forum Thread Style) */
 section {
-  max-width: 800px;
-  margin: auto;
-  padding: 1.5rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
   background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
 }
 
+/* Headings inside sections */
 h2 {
   margin-top: 1.5rem;
   color: var(--secondary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
 }
 
 ul, ol {
@@ -59,9 +94,20 @@ ul, ol {
   margin-top: 0.5rem;
 }
 
+/* Footer */
 footer {
   text-align: center;
-  margin-top: 3rem;
+  margin: 3rem 0 1rem;
   color: var(--muted-text);
   font-size: 0.9rem;
+}
+
+/* Links in content */
+section a {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+section a:hover {
+  color: var(--link-hover);
 }
