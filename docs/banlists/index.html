@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeWatch | Ban List Viewer</title>
+  <link rel="stylesheet" href="/SafeWatch/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Ban List Viewer</h1>
+    <p class="lead">Select a game and ban mode to view flagged users and objects.</p>
+  </header>
+
+  <section>
+    <div class="controls">
+      <label for="gameSelect">Game:</label>
+      <select id="gameSelect">
+        <option value="" disabled selected>Select a game</option>
+      </select>
+
+      <label for="modeSelect">Mode:</label>
+      <select id="modeSelect" disabled>
+        <option value="" disabled selected>Select a mode</option>
+      </select>
+
+      <input type="text" id="searchInput" placeholder="Search for users, groups, etc..." />
+    </div>
+
+    <div id="resultsContainer" class="results"></div>
+    <div id="infoContainer" class="info-panel"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SafeWatch Project</p>
+  </footer>
+
+  <script src="/SafeWatch/banlist/script.js"></script>
+</body>
+</html>
