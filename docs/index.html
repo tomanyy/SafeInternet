@@ -5,15 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SafeWatch | User Safety Platform</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Page fade-in */
+    body {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Section animation */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.8s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="report.html">Report</a>
-    <a href="platforms.html">Platforms</a>
-    <a href="contact.html">Contact</a>
+  <nav role="navigation" aria-label="Main">
+    <a href="index">Home</a>
+    <a href="about">About</a>
   </nav>
 
   <!-- Header -->
@@ -22,35 +45,37 @@
     <p class="lead">Protecting communities across Roblox, VRChat, and beyond.</p>
   </header>
 
-  <!-- Main Section -->
-  <section>
-    <h2>What is SafeWatch?</h2>
-    <p>
-      SafeWatch is a cross-platform user safety initiative focused on identifying, tracking, and reporting individuals
-      involved in harmful or abusive behavior on popular social platforms.
-    </p>
+  <!-- Main Content -->
+  <main>
+    <section>
+      <h2>What is SafeWatch?</h2>
+      <p>
+        SafeWatch is a cross-platform user safety initiative focused on identifying, tracking, and reporting individuals
+        involved in harmful or abusive behavior on popular social platforms.
+      </p>
 
-    <h2>Supported Platforms</h2>
-    <ul>
-      <li>Roblox</li>
-      <li>VRChat</li>
-      <li>Discord</li>
-      <li>More coming soon...</li>
-    </ul>
+      <h2>Supported Platforms</h2>
+      <ul>
+        <li>Roblox</li>
+        <li>VRChat</li>
+        <li>Discord</li>
+        <li>More coming soon...</li>
+      </ul>
 
-    <h2>How It Works</h2>
-    <ol>
-      <li>Collects and analyzes reports of user misconduct</li>
-      <li>Links activity across platforms</li>
-      <li>Provides tools for moderators and community leaders</li>
-    </ol>
+      <h2>How It Works</h2>
+      <ol>
+        <li>Collects and analyzes reports of user misconduct</li>
+        <li>Links activity across platforms</li>
+        <li>Provides tools for moderators and community leaders</li>
+      </ol>
 
-    <p><strong>Transparency. Privacy. Protection.</strong></p>
-  </section>
+      <p><strong>Transparency. Privacy. Protection.</strong></p>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 SafeWatch Project</p>
+    <p>&copy; 2025 SafeWatch Project. All rights reserved.</p>
   </footer>
 </body>
 </html>
