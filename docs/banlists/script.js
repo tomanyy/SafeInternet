@@ -7,14 +7,17 @@ const infoContainer = document.getElementById("infoContainer");
 let games = {};
 
 function fetchGames() {
-  fetch("/SafeWatch/data/games.json")
-    .then(res => res.json())
+  fetch("https://raw.githubusercontent.com/tomanyy/SafeWatch/main/data/games.json")
+    .then(res => {
+      if (!res.ok) throw new Error("Could not load games.json");
+      return res.json();
+    })
     .then(data => {
       games = data;
       populateGames();
     })
     .catch(err => {
-      console.error("Error loading games.json", err);
+      console.error("Error loading games.json:", err);
     });
 }
 
