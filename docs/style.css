@@ -1,26 +1,13 @@
 :root {
-  --primary-color: #1f2937;
-  --secondary-color: #3b82f6;
-  --bg-color: #f9fafb;
-  --card-bg-color: #ffffff;
-  --text-color: #111827;
-  --muted-text: #6b7280;
-  --lead-text: #374151;
-  --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  --primary-color: #f3f4f6;       
+  --secondary-color: #60a5fa;       
+  --bg-color: #111827;            
+  --card-bg-color: #1f2937;       
+  --text-color: #f9fafb;         
+  --muted-text: #9ca3af;           
+  --lead-text: #d1d5db;            
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   --border-radius: 12px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #f3f4f6;
-    --secondary-color: #60a5fa;
-    --bg-color: #111827;
-    --card-bg-color: #1f2937;
-    --text-color: #f9fafb;
-    --muted-text: #9ca3af;
-    --lead-text: #d1d5db;
-    --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
 }
 
 * {
@@ -35,7 +22,6 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   padding: 2rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
@@ -61,7 +47,6 @@ section {
   background-color: var(--card-bg-color);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 h2 {
