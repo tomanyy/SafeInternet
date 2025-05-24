@@ -4,11 +4,19 @@ const searchInput = document.getElementById("searchInput");
 const resultsContainer = document.getElementById("resultsContainer");
 const infoContainer = document.getElementById("infoContainer");
 
-// Example data (would be fetched from real files in production)
-const games = {
-  Roblox: ["players", "groups"],
-  VRChat: ["players", "worlds"]
-};
+let games = {};
+
+function fetchGames() {
+  fetch("/SafeWatch/data/games.json")
+    .then(res => res.json())
+    .then(data => {
+      games = data;
+      populateGames();
+    })
+    .catch(err => {
+      console.error("Error loading games.json", err);
+    });
+}
 
 const userData = {}; // Placeholder for users.json data
 const groupData = {}; // Placeholder for groups.json data
