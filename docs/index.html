@@ -3,79 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SafeWatch | User Safety Platform</title>
+  <title>SafeWatch | Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Page fade-in */
     body {
       opacity: 0;
       animation: fadeIn 0.8s ease-in-out forwards;
     }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Section animation */
     section {
       opacity: 0;
       transform: translateY(30px);
       animation: slideUp 0.8s ease-out forwards;
       animation-delay: 0.3s;
     }
-
     @keyframes slideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .search-bar {
+      margin: 1rem auto 2rem;
+      max-width: 600px;
+      display: flex;
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: transparent;
+      border: none;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 0 1rem;
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: var(--link-hover);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav role="navigation" aria-label="Main">
-    <a href="index">Home</a>
-    <a href="about">About</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/report">Report</a>
+    <a href="/platforms">Platforms</a>
+    <a href="/contact">Contact</a>
   </nav>
 
-  <!-- Header -->
   <header>
     <h1>SafeWatch</h1>
     <p class="lead">Protecting communities across Roblox, VRChat, and beyond.</p>
   </header>
 
-  <!-- Main Content -->
   <main>
+    <div class="search-bar">
+      <input type="text" placeholder="Search reports, usernames, or topics..." />
+      <button>Search</button>
+    </div>
+
     <section>
       <h2>What is SafeWatch?</h2>
       <p>
-        SafeWatch is a cross-platform user safety initiative focused on identifying, tracking, and reporting individuals
-        involved in harmful or abusive behavior on popular social platforms.
+        SafeWatch is a community-driven platform focused on digital safety across social gaming networks and chat platforms.
+        We aim to track, verify, and expose abusive behavior and empower moderators with unified tools.
       </p>
 
-      <h2>Supported Platforms</h2>
-      <ul>
-        <li>Roblox</li>
-        <li>VRChat</li>
-        <li>Discord</li>
-        <li>More coming soon...</li>
-      </ul>
-
-      <h2>How It Works</h2>
-      <ol>
-        <li>Collects and analyzes reports of user misconduct</li>
-        <li>Links activity across platforms</li>
-        <li>Provides tools for moderators and community leaders</li>
-      </ol>
-
-      <p><strong>Transparency. Privacy. Protection.</strong></p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Cross-Platform Tracking</h3>
+          <p>Track user behavior across Roblox, VRChat, Discord, and more. Stay informed across ecosystems.</p>
+        </div>
+        <div class="info-card">
+          <h3>Community Reports</h3>
+          <p>Users can submit misconduct anonymously. Reports are verified by trained moderators.</p>
+        </div>
+        <div class="info-card">
+          <h3>Transparency First</h3>
+          <p>We value privacy, transparency, and accountability in everything we publish.</p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 SafeWatch Project. All rights reserved.</p>
+    <p>&copy; 2025 SafeWatch Project</p>
   </footer>
 </body>
 </html>
