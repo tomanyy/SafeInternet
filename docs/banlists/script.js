@@ -69,27 +69,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function displayBans(data) {
+  async function displayBans(data) {
     banListContainer.innerHTML = "";
-    data.forEach(entry => {
+
+    for (const entry of data) {
+      const enriched = await enrichUserData(entry);
       const card = document.createElement("div");
       card.className = "ban-card";
 
       card.innerHTML = `
-        <img src="${entry.avatar}" alt="Avatar" class="avatar">
+        <img src="${enriched.avatar}" alt="Avatar" class="avatar">
         <div class="info">
-          <h3>${entry.displayName || entry.username}</h3>
-          <p>@${entry.username}</p>
+          <h3>${enriched.displayName}</h3>
+          <p>@${enriched.username}</p>
         </div>
       `;
 
       card.addEventListener("click", () => {
-        showDetails(entry);
+        showDetails(enriched);
       });
 
       banListContainer.appendChild(card);
-    });
+    }
   }
+
+  async function enrichUserData(entry) {
+    const userId = entry.userId;
+
+    let username = entry.username || null;
+    let displayName = entry.displayName || null;
+
+    if (!username || !displayName) {
+      try {
+        const res = await fetch(`https://users.roblox.com/v1/users/${userId}`);
+        const info = await res.json();
+        username = username || info.name;
+        displayName = displayName || info.displayName;
+      } catch (err) {
+        console.error("Failed to fetch user info:", err);
+      }
+    }
+
+    const avatarURL = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=png`;
+
+    return {
+      userId,
+      username,
+      displayName,
+      dateFlagged: entry.dateFlagged,
+      avatar: avatarURL
+    };
+  } 
+
+
 
   function filterList(data) {
     const query = searchInput.value.toLowerCase();
@@ -98,21 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
       (entry.displayName && entry.displayName.toLowerCase().includes(query))
     );
     displayBans(filtered);
-  }
-
-  function showDetails(entry) {
-    const detailBox = document.createElement("div");
-    detailBox.className = "detail-overlay";
-
-    detailBox.innerHTML = `
-      <div class="detail-content">
-        <button class="close-btn">×</button>
-        <pre>${JSON.stringify(entry, null, 2)}</pre>
-      </div>
-    `;
-
-    detailBox.querySelector(".close-btn").onclick = () => detailBox.remove();
-    document.body.appendChild(detailBox);
   }
 
   function capitalize(str) {
