@@ -10,6 +10,7 @@
       opacity: 0;
       animation: fadeIn 0.8s ease-in-out forwards;
     }
+
     @keyframes fadeIn { to { opacity: 1; } }
 
     section {
@@ -18,18 +19,20 @@
       animation: slideUp 0.8s ease-out forwards;
       animation-delay: 0.3s;
     }
+
     @keyframes slideUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
     .search-bar {
-      margin: 1rem auto 2rem;
+      margin: 2rem auto;
       max-width: 600px;
       display: flex;
       background-color: var(--card-bg-color);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .search-bar input {
@@ -46,12 +49,13 @@
     }
 
     .search-bar button {
-      padding: 0 1rem;
+      padding: 0 1.25rem;
       background-color: var(--secondary-color);
-      color: white;
+      color: #fff;
       border: none;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     .search-bar button:hover {
@@ -61,21 +65,33 @@
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      gap: 2rem;
+      margin-top: 2.5rem;
     }
 
     .info-card {
       background-color: var(--card-bg-color);
       border: 1px solid var(--border-color);
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .info-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+    }
+
+    .info-card h3 {
+      margin-bottom: 0.75rem;
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+    }
+
+    .info-card p {
+      color: var(--muted-text);
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -94,37 +110,37 @@
   </header>
 
   <main>
-    <div class="search-bar">
-      <input type="text" placeholder="Search reports, usernames, or topics..." />
-      <button>Search</button>
-    </div>
+    <form class="search-bar" role="search" aria-label="Site Search">
+      <input type="search" placeholder="Search reports, usernames, or topics..." />
+      <button type="submit">Search</button>
+    </form>
 
     <section>
       <h2>What is SafeWatch?</h2>
       <p>
-        SafeWatch is a community-driven platform focused on digital safety across social gaming networks and chat platforms.
-        We aim to track, verify, and expose abusive behavior and empower moderators with unified tools.
+        SafeWatch is a community-driven platform dedicated to improving digital safety on platforms like Roblox, VRChat, Discord, and more.
+        Our goal is to verify and expose abusive behavior, protect users, and equip moderators with powerful, transparent tools.
       </p>
 
       <div class="info-grid">
         <div class="info-card">
           <h3>Cross-Platform Tracking</h3>
-          <p>Track user behavior across Roblox, VRChat, Discord, and more. Stay informed across ecosystems.</p>
+          <p>Monitor user activity across multiple platforms and stay ahead of harmful behavior trends.</p>
         </div>
         <div class="info-card">
-          <h3>Community Reports</h3>
-          <p>Users can submit misconduct anonymously. Reports are verified by trained moderators.</p>
+          <h3>Verified Reports</h3>
+          <p>Community reports are carefully vetted by trained moderators to ensure accuracy and fairness.</p>
         </div>
         <div class="info-card">
-          <h3>Transparency First</h3>
-          <p>We value privacy, transparency, and accountability in everything we publish.</p>
+          <h3>Privacy & Transparency</h3>
+          <p>We prioritize ethical moderation by putting transparency and user privacy at the forefront.</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 SafeWatch Project</p>
+    <p>&copy; 2025 SafeWatch Project • All rights reserved</p>
   </footer>
 </body>
 </html>
