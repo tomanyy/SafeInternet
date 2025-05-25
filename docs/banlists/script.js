@@ -22,20 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.disabled = true;
     banListContainer.innerHTML = '';
 
-    fetch(`https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists/${game}`)
-      .then(res => res.json())
-      .then(data => {
-        data.filter(file => file.name.endsWith(".json"))
-            .forEach(file => {
-              const mode = file.name.replace(".json", "");
-              const option = document.createElement("option");
-              option.value = mode;
-              option.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
-              modeSelect.appendChild(option);
-            });
-        modeSelect.disabled = false;
+  fetch("https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists")
+    .then(res => res.json())
+    .then(data => {
+      data.filter(item => item.type === "dir").forEach(game => {
+        const option = document.createElement("option");
+        option.value = game.name;
+        option.textContent = game.name.charAt(0).toUpperCase() + game.name.slice(1);
+        gameSelect.appendChild(option);
       });
   });
+
 
   modeSelect.addEventListener("change", () => {
     const game = gameSelect.value;
