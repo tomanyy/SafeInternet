@@ -1,0 +1,156 @@
+:root {
+  --primary-color: #f9fafb;
+  --secondary-color: #60a5fa;
+  --bg-color: #0f172a;
+  --card-bg-color: #1e293b;
+  --text-color: #e2e8f0;
+  --muted-text: #94a3b8;
+  --lead-text: #cbd5e1;
+  --link-hover: #93c5fd;
+  --border-color: #334155;
+  --accent-border: #3b82f6;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --radius: 12px;
+  --transition: 0.3s ease;
+  --max-width: 960px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  scroll-behavior: smooth;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: var(--card-bg-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem;
+  transition: color var(--transition);
+}
+
+nav a:hover {
+  color: var(--link-hover);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  background-color: var(--card-bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+  font-size: 2.75rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+p.lead {
+  font-size: 1.25rem;
+  color: var(--lead-text);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Forum Section */
+section {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Typography */
+h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--accent-border);
+  padding-bottom: 0.25rem;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+li {
+  padding: 0.25rem 0;
+}
+
+strong {
+  color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  color: var(--muted-text);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Links in content */
+section a {
+  color: var(--secondary-color);
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+
+section a:hover {
+  color: var(--link-hover);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-border);
+}
