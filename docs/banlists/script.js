@@ -74,21 +74,25 @@ function loadBanList(game, mode) {
 
   fetch(url)
     .then(res => {
-      if (!res.ok) throw new Error("Failed to fetch ban list");
-      return res.json();
+      if (!res.ok) throw new Error("Failed to fetch ban list: " + res.status);
+      return res.text();  // Get raw text first
     })
-    .then(data => {
-      // Data assumed to be an array of banned users/objects
-      currentBanList = data;
-      renderBanList(data);
-      searchInput.disabled = false;
+    .then(text => {
+      try {
+        const data = JSON.parse(text);
+        // proceed with data...
+        currentBanList = data;
+        renderBanList(data);
+        searchInput.disabled = false;
+      } catch (e) {
+        throw new Error("Invalid JSON: " + e.message);
+      }
     })
     .catch(err => {
       banListContainer.textContent = "Error loading ban list: " + err.message;
       currentBanList = [];
       searchInput.disabled = true;
     });
-}
 
 // Render the list of banned users/objects (show avatar, username, display name)
 function renderBanList(list) {
