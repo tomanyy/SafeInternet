@@ -1,14 +1,6 @@
 [
   {
-    "username": "Roblox",
-    "displayName": "Roblox",
     "userId": 1,
-    "avatar": "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-310966282D3529E36976BF6B07B1DC90-Png/150/150/AvatarHeadshot/Webp/noFilter",
-    "reason": "Test",
-    "dateFlagged": "2025-05-20",
-    "evidence": [
-      "https://example.com/evidence1.png",
-      "https://example.com/evidence2.mp4"
-    ]
+    "dateFlagged": "2025-05-25"
   }
 ]
