@@ -3,7 +3,7 @@ async function loadModes(game) {
   modeSelect.innerHTML = '<option value="">Loading...</option>';
   modeSelect.disabled = true;
 
-  const url = `https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists/${game}`;
+  const url = `https://raw.githubusercontent.com/tomanyy/SafeWatch/main/BanLists/${game}`;
   try {
     const res = await fetch(url);
     const data = await res.json();
