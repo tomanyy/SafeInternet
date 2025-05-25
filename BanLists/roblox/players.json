@@ -1,31 +1,25 @@
-{
-  "123456789": {
-    "username": "ToxicPlayer01",
-    "displayName": "ToxicPlayer",
-    "userId": 123456789,
-    "avatar": "https://tr.rbxcdn.com/abcd1234/150/150/AvatarHeadshot/Png",
-    "notes": "Repeated harassment and exploiting."
-  },
-  "987654321": {
-    "username": "ScamMaster",
-    "displayName": "ScamMaster",
+[
+  {
+    "username": "ToxicPlayer123",
+    "displayName": "Toxic Legend",
     "userId": 987654321,
-    "avatar": "https://tr.rbxcdn.com/wxyz5678/150/150/AvatarHeadshot/Png",
-    "notes": "Scamming players with fake gamepasses."
+    "avatar": "https://www.roblox.com/headshot-thumbnail/image?userId=987654321&width=150&height=150&format=png",
+    "reason": "Harassment and spamming in public lobbies",
+    "dateFlagged": "2025-05-20",
+    "evidence": [
+      "https://example.com/evidence1.png",
+      "https://example.com/evidence2.mp4"
+    ]
   },
-  "112233445": {
-    "username": "SpamKing",
-    "displayName": "SpamKing",
-    "userId": 112233445,
-    "avatar": "https://tr.rbxcdn.com/fghj7890/150/150/AvatarHeadshot/Png",
-    "notes": "Spamming and bypassing filters across multiple games."
-  },
-  "556677889": {
-    "username": "AltExploit",
-    "displayName": "AltExploit",
-    "userId": 556677889,
-    "avatar": "https://tr.rbxcdn.com/poiu3214/150/150/AvatarHeadshot/Png",
-    "notes": "Confirmed alt account used for exploiting after main was banned."
+  {
+    "username": "ExploiterX",
+    "displayName": "Script Kiddie",
+    "userId": 123456789,
+    "avatar": "https://www.roblox.com/headshot-thumbnail/image?userId=123456789&width=150&height=150&format=png",
+    "reason": "Using exploit tools to crash servers",
+    "dateFlagged": "2025-05-18",
+    "evidence": [
+      "https://example.com/exploit_log.txt"
+    ]
   }
-}
-
+]

@@ -48,22 +48,26 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadBanList(game, mode) {
     try {
       const res = await fetch(`https://raw.githubusercontent.com/tomanyy/SafeWatch/main/BanLists/${game}/${mode}.json`);
-      
       const data = await res.json();
-      const entries = Array.isArray(data) ? data : Object.values(data)[0]; // get the first array if data is an object
-      if (!Array.isArray(entries)) throw new Error("Ban list data is not an array.");
-      displayBans(entries);
-
+    
+      // Extract array if data is an object (e.g. { users: [...] })
+      const list = Array.isArray(data)
+        ? data
+        : Object.values(data).find(v => Array.isArray(v));
+    
+      if (!Array.isArray(list)) {
+        throw new Error("Ban list data is not an array.");
+      }
+    
+      displayBans(list);
+    
       searchInput.disabled = false;
-      searchInput.oninput = () => filterList(entries);
-
-
-      searchInput.disabled = false;
-      searchInput.oninput = () => filterList(data);
+      searchInput.oninput = () => filterList(list);
     } catch (err) {
       console.error("Error loading ban list:", err);
     }
   }
+
 
   function displayBans(data) {
     banListContainer.innerHTML = "";
