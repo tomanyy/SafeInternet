@@ -6,53 +6,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const banListContainer = document.getElementById("banListContainer");
 
-  const games = ["roblox", "vrchat"];
+  async function loadGames() {
+    try {
+      const res = await fetch("https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists");
+      const data = await res.json();
 
-  games.forEach(game => {
-    const option = document.createElement("option");
-    option.value = game;
-    option.textContent = game.charAt(0).toUpperCase() + game.slice(1);
-    gameSelect.appendChild(option);
-  });
+      const games = data.filter(item => item.type === "dir");
 
-  gameSelect.addEventListener("change", () => {
-    const game = gameSelect.value;
-    modeSelect.innerHTML = '<option disabled selected>Select Mode</option>';
-    modeSelect.disabled = true;
-    searchInput.disabled = true;
-    banListContainer.innerHTML = '';
-
-  fetch("https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists")
-    .then(res => res.json())
-    .then(data => {
-      data.filter(item => item.type === "dir").forEach(game => {
+      games.forEach(game => {
         const option = document.createElement("option");
         option.value = game.name;
-        option.textContent = game.name.charAt(0).toUpperCase() + game.name.slice(1);
+        option.textContent = capitalize(game.name);
         gameSelect.appendChild(option);
       });
-  });
+    } catch (err) {
+      console.error("Failed to load games:", err);
+    }
+  }
 
+  async function loadModes(game) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/tomanyy/SafeWatch/contents/BanLists/${game}`);
+      const data = await res.json();
 
-  modeSelect.addEventListener("change", () => {
-    const game = gameSelect.value;
-    const mode = modeSelect.value;
+      modeSelect.innerHTML = '<option disabled selected>Select Mode</option>';
+      data.filter(file => file.name.endsWith(".json"))
+          .forEach(file => {
+            const mode = file.name.replace(".json", "");
+            const option = document.createElement("option");
+            option.value = mode;
+            option.textContent = capitalize(mode);
+            modeSelect.appendChild(option);
+          });
 
-    fetch(`https://raw.githubusercontent.com/tomanyy/SafeWatch/main/BanLists/${game}/${mode}.json`)
-      .then(res => res.json())
-      .then(data => {
-        searchInput.disabled = false;
-        displayBans(data);
-        searchInput.oninput = () => {
-          const query = searchInput.value.toLowerCase();
-          const filtered = data.filter(entry =>
-            entry.username.toLowerCase().includes(query) ||
-            (entry.displayName && entry.displayName.toLowerCase().includes(query))
-          );
-          displayBans(filtered);
-        };
-      });
-  });
+      modeSelect.disabled = false;
+    } catch (err) {
+      console.error("Failed to load modes:", err);
+    }
+  }
+
+  async function loadBanList(game, mode) {
+    try {
+      const res = await fetch(`https://raw.githubusercontent.com/tomanyy/SafeWatch/main/BanLists/${game}/${mode}.json`);
+      const data = await res.json();
+      displayBans(data);
+
+      searchInput.disabled = false;
+      searchInput.oninput = () => filterList(data);
+    } catch (err) {
+      console.error("Error loading ban list:", err);
+    }
+  }
 
   function displayBans(data) {
     banListContainer.innerHTML = "";
@@ -69,10 +73,55 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       card.addEventListener("click", () => {
-        alert(JSON.stringify(entry, null, 2));
+        showDetails(entry);
       });
 
       banListContainer.appendChild(card);
     });
   }
+
+  function filterList(data) {
+    const query = searchInput.value.toLowerCase();
+    const filtered = data.filter(entry =>
+      entry.username.toLowerCase().includes(query) ||
+      (entry.displayName && entry.displayName.toLowerCase().includes(query))
+    );
+    displayBans(filtered);
+  }
+
+  function showDetails(entry) {
+    const detailBox = document.createElement("div");
+    detailBox.className = "detail-overlay";
+
+    detailBox.innerHTML = `
+      <div class="detail-content">
+        <button class="close-btn">×</button>
+        <pre>${JSON.stringify(entry, null, 2)}</pre>
+      </div>
+    `;
+
+    detailBox.querySelector(".close-btn").onclick = () => detailBox.remove();
+    document.body.appendChild(detailBox);
+  }
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  // Event bindings
+  gameSelect.addEventListener("change", () => {
+    const game = gameSelect.value;
+    modeSelect.disabled = true;
+    searchInput.disabled = true;
+    banListContainer.innerHTML = "";
+    loadModes(game);
+  });
+
+  modeSelect.addEventListener("change", () => {
+    const game = gameSelect.value;
+    const mode = modeSelect.value;
+    loadBanList(game, mode);
+  });
+
+  loadGames();
 });
