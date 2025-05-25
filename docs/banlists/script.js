@@ -69,11 +69,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  let renderQueue = [];
+  let renderInterval;
+
   async function displayBans(data) {
     banListContainer.innerHTML = "";
+    clearInterval(renderInterval);
+    renderQueue = [...data]; // clone list
 
-    for (const entry of data) {
+    renderInterval = setInterval(async () => {
+      if (renderQueue.length === 0) {
+        clearInterval(renderInterval);
+        return;
+      }
+
+      const entry = renderQueue.shift();
       const enriched = await enrichUserData(entry);
+
       const card = document.createElement("div");
       card.className = "ban-card";
 
@@ -90,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       banListContainer.appendChild(card);
-    }
+    }, 500); // 0.5 seconds between each render
   }
 
   async function enrichUserData(entry) {
