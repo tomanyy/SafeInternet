@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeWatch | Ban Lists</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .dropdown {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    select {
+      padding: 0.5rem 1rem;
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg-color);
+      color: var(--text-color);
+      border-radius: var(--radius);
+    }
+
+    .ban-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .user-card {
+      background: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .user-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .user-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    .user-details {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+
+    .user-card.expanded .user-details {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/SafeWatch/">Home</a>
+    <a href="/SafeWatch/about">About</a>
+    <a href="/SafeWatch/report">Report</a>
+    <a href="/SafeWatch/platforms">Platforms</a>
+    <a href="/SafeWatch/contact">Contact</a>
+  </nav>
+
+  <header>
+    <h1>Ban Lists</h1>
+    <p class="lead">Browse and review flagged users by game and moderation category.</p>
+  </header>
+
+  <main>
+    <section>
+      <div class="dropdown">
+        <label for="game">Select Game:</label>
+        <select id="game" onchange="loadModes(this.value)">
+          <option value="">--Choose--</option>
+          <option value="roblox">Roblox</option>
+          <option value="vrchat">VRChat</option>
+        </select>
+
+        <label for="mode">Select Mode:</label>
+        <select id="mode" onchange="loadBanList()" disabled>
+          <option value="">--Choose Mode--</option>
+        </select>
+      </div>
+
+      <input type="text" id="search" class="search-input" placeholder="Search banned users..." oninput="filterUsers()" />
+
+      <div class="ban-list" id="banList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SafeWatch Project</p>
+  </footer>
+
+  <script src="banlists.js"></script>
+</body>
+</html>
