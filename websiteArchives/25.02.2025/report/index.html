@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report | SafeWatch</title>
+  <link rel="stylesheet" href="/SafeWatch/style.css">
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      padding: 0.75rem;
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      align-self: flex-start;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--secondary-color);
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--link-hover);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/SafeWatch/">Home</a>
+    <a href="/SafeWatch/about">About</a>
+    <a href="/SafeWatch/report">Report</a>
+    <a href="/SafeWatch/platforms">Platforms</a>
+    <a href="/SafeWatch/contact">Contact</a>
+  </nav>
+
+  <header>
+    <h1>Submit a Report</h1>
+    <p class="lead">Help us keep our platforms safe by reporting misconduct or abuse.</p>
+  </header>
+
+  <main>
+    <section>
+      <form>
+        <label for="username">Reported Username:</label>
+        <input type="text" id="username" name="username" placeholder="e.g. ToxicPlayer123" required />
+
+        <label for="platform">Platform:</label>
+        <select id="platform" name="platform" required>
+          <option value="">-- Select Platform --</option>
+          <option value="roblox">Roblox</option>
+          <option value="vrchat">VRChat</option>
+          <option value="discord">Discord</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="details">Incident Details:</label>
+        <textarea id="details" name="details" placeholder="Describe what happened..." required></textarea>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SafeWatch Project</p>
+  </footer>
+</body>
+</html>
