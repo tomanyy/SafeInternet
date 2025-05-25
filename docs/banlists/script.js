@@ -98,9 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       card.addEventListener("click", () => {
-        showDetails(enriched);
+        window.open(`https://www.roblox.com/users/${enriched.userId}/profile`, "_blank");
       });
 
+      // Inside displayBans()
+      banListContainer.innerHTML = "<p>Loading users...</p>";
+      ...
+      if (renderQueue.length === 0) {
+      banListContainer.querySelector("p")?.remove(); // Remove loading
+    }
+      
       banListContainer.appendChild(card);
     }, 500); // 0.5 seconds between each render
   }
@@ -148,6 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+
+  
   // Event bindings
   gameSelect.addEventListener("change", () => {
     const game = gameSelect.value;
