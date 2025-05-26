@@ -89,6 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
         showDetails(enriched);
       });
 
+      // Inside displayBans()
+      banListContainer.innerHTML = "<p>Loading users...</p>";
+      ...
+      if (renderQueue.length === 0) {
+      banListContainer.querySelector("p")?.remove(); // Remove loading
+    }
+      
       banListContainer.appendChild(card);
     }
   }
@@ -136,6 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+
+  
   // Event bindings
   gameSelect.addEventListener("change", () => {
     const game = gameSelect.value;
